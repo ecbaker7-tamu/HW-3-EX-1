@@ -22,13 +22,24 @@ UPDATE graduates SET Graduation='8/9/2018' WHERE Name='Layal';
 DELETE FROM students where name='Layal';
 
 ---
+--- PART 2 ---
 
-SELECT employees.name, employees.Company, companies.date FROM employees Inner join companies ON employees.Company=companies.name;
-SELECT employees.name FROM employees Inner join companies ON employees.Company=companies.name and companies.Date < 2000;
-SELECT companies.name FROM companies Inner join employees ON employees.Company=companies.name and employees.Role='Graphic Designer';
+SELECT employees.name, employees.Company, employees.Role, companies.date FROM employees Inner join companies ON employees.Company=companies.name;
 
-select name from students where points=(SELECT MAX(points) from students);
-select AVG(points) from students;
-select COUNT(Name) from students where points=500;
-select Name from students WHERE Name GLOB '*s*';
-select name from students ORDER BY points DESC;
+
+CREATE TABLE employeeTable(
+Name TEXT NOT NULL UNIQUE,
+Company TEXT NOT NULL,
+Date INTEGER
+);
+
+SELECT employees.name FROM employees Inner join companies ON employees.Company=companies.Name and companies.date>2000;
+SELECT employees.name FROM employees Inner join companies ON employees.Company=companies.Name and employees.Role='Graphic Designer';
+
+---
+--- PART 3 ---
+SELECT * FROM students WHERE points=(SELECT max(points) FROM students);
+SELECT avg(points) FROM students;
+SELECT COUNT(name) FROM students where points=500;
+SELECT Name FROM students WHERE Name glob '*s*';
+SELECT Name FROM students ORDER BY points DESC;
