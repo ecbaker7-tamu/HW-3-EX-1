@@ -1,23 +1,27 @@
-SELECT Name FROM Students;
-SELECT * FROM Students WHERE Age > 30;
-SELECT Name FROM Students WHERE Gender='F' AND Age=30;
-SELECT Points FROM Students WHERE Name='Alex';
-INSERT INTO Students VALUES(10, 'Nabigha', '24', 'F', 500);
-UPDATE Students SET Points = 500 WHERE Name='Basma';
-UPDATE Students SET Points = 100 WHERE Name='Alex';
+
+-- PART ONE --
+SELECT * FROM students;
+SELECT * FROM students WHERE Age > 30;
+SELECT * FROM students WHERE Age=30 AND Gender='F';
+SELECT Points FROM students WHERE name='Alex';
+--INSERT INTO students VALUES(7,'Emily', '23', 'F', 300);
+UPDATE students SET Points = 500 WHERE name='Basma';
+UPDATE students SET Points = 150 WHERE name='Alex';
 
 CREATE TABLE graduates(
-    ID INTEGER  PRIMARY KEY AUTOINCREMENT,
-    Name  TEXT NOT NULL UNIQUE,
-    Age INTEGER,
-	Gender TEXT,
-	Points INTEGER,
-	Graduation TEXT
+ID INTEGER PRIMARY KEY AUTOINCREMENT,
+Name TEXT NOT NULL UNIQUE,
+Age INTEGER,
+Gender TEXT,
+Points INTEGER,
+Graduation TEXT
 );
 
 INSERT INTO graduates(Name, Age, Gender, Points) SELECT Name, Age, Gender, Points FROM Students WHERE Students.Name='Layal';
-UPDATE graduates SET Graduation='08-09-2018' WHERE Name='Layal';
-DELETE FROM graduates WHERE Name='Layal';
+UPDATE graduates SET Graduation='8/9/2018' WHERE Name='Layal';
+DELETE FROM students where name='Layal';
+
+---
 
 SELECT employees.name, employees.Company, companies.date FROM employees Inner join companies ON employees.Company=companies.name;
 SELECT employees.name FROM employees Inner join companies ON employees.Company=companies.name and companies.Date < 2000;
